@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <section id="splash">
+    Dienstplan KKH
+  </section>
+  {% if hasError %}<section id="error-msg">{{ errorMsg }}</section>{% endif %}
+  <section class="login-area card">
+    <h3>Login</h3>
+    <form action="/login" method="POST">
+      <input type="email" placeholder="E-Mail">
+      <input type="password" placeholder="Passwort">
+      <input type="submit" value="einloggen">
+    </form>
+  </section>
+  <section class="login-area card">
+    <h3>Passwort vergessen</h3>
+    <form action="/forgotpwd" method="POST">
+      <input type="email" placeholder="E-Mail">
+      <input type="submit" value="Password zurücksetzen">
+    </form>
+  </section>
+{% endblock %}
