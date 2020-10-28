@@ -57,26 +57,46 @@ const Shift = sequelize.define('Shift', {
     type: DataTypes.DATE,
     allowNull: false
   }
-})
+}, {timestamps: false})
+
+const ShiftOption = sequelize.define('ShiftOption', {
+  ifNeeded: {
+    type: DataTypes.BOOLEAN
+  }
+}, {timestamps: false})
+
+const PlanNote = sequelize.define('PlanNote', {
+  maxNights: {
+    type: DataTypes.INTEGER
+  },
+  maxDays: {
+    type: DataTypes.INTEGER
+  },
+  Notes: {
+    type: DataTypes.TEXT
+  }
+}, {timestamps: false})
 
 Plan.hasMany(Shift)
 Shift.belongsTo(Plan)
 
-Shift.belongsToMany(User, {through: 'ShiftOptions'})
-User.belongsToMany(Shift, {through: 'ShiftOptions'})
+Shift.belongsToMany(User, {through: ShiftOption})
+User.belongsToMany(Shift, {through: ShiftOption})
 
 User.hasMany(Shift, {foreignKey: 'pickedUser'})
 Shift.belongsTo(User)
+
+User.hasMany(PlanNote)
+PlanNote.belongsTo(User)
+
+Plan.hasMany(PlanNote)
+PlanNote.belongsTo(Plan)
 
 const sessionStore = new SequelizeStore({
   db: sequelize
 })
 
 async function init () {
-  const userSync = User.sync({alter: true})
-  const planSync = Plan.sync({alter: true})
-  const shiftSync = Shift.sync({alter: true})
-  const sessionSync = sessionStore.sync()
-  return await Promise.all([userSync, planSync, shiftSync, sessionSync])
+  return await sequelize.sync({force: true})
 }
-module.exports = { User, Plan, Shift, init, sessionStore }
+module.exports = { User, Plan, Shift, PlanNote, ShiftOption, init, sessionStore }
