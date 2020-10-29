@@ -24,8 +24,10 @@ appRouter.get('/profile', require('./routes/app/profile'))
 appRouter.post('/profile', require('./routes/app/profile_post'))
 appRouter.get('/admin', [onlyAdmin], require('./routes/app/admin'))
 appRouter.post('/admin', [onlyAdmin], require('./routes/app/admin_post'))
+
 appRouter.get('/newplan', [onlyAdmin], require('./routes/app/newplan'))
 appRouter.post('/newplan', [onlyAdmin], require('./routes/app/newplan_post'))
+appRouter.get('/plan/:planId', require('./routes/app/plan'))
 
 async function userHandler (req, res, next) {
   if (!req.session.userId)

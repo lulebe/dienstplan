@@ -1,0 +1,11 @@
+{% extends "base.twig" %}
+
+{% block title %}{{plan.name}}{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+  <h2>Dienstplan {{plan.name}}</h2>
+  von {{plan.start}} bis {{plan.end}}
+  
+</div>
+{% endblock %}

@@ -6,8 +6,9 @@ module.exports = async (req, res) => {
     return res.redirect('/app/newplan?status=0')
   await Plan.create({
     name: req.body.name,
-    start: new Date(Date.parse(req.body.startdate + ' ' + req.body.starttime)),
-    end: new Date(Date.parse(req.body.enddate + ' ' + req.body.endtime))
+    start: new Date(Date.parse(req.body.startdate)),
+    end: new Date(Date.parse(req.body.enddate))
   })
+  //TODO create Shifts
   res.redirect('/app/main')
 }
