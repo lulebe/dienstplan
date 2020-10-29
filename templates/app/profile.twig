@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+  <h2>{{user.firstName}} {{user.lastName}}</h2>
+
+  {% if successMsg is defined %}
+  <div class="msgcard success">{{successMsg}}</div>
+  {% endif %}
+
+  {% if errorMsg is defined %}
+  <div class="msgcard error">{{errorMsg}}</div>
+  {% endif %}
+
+  <section class="card">
+    <h3>Passwort ändern</h3>
+    <form method="post">
+      <input type="password" name="pwold" placeholder="altes Passwort">
+      <input type="password" name="pwnew" placeholder="neues Passwort">
+      <input type="password" name="pwnewmatch" placeholder="neues Passwort wiederholen">
+      <input type="submit" value="Passwort ändern">
+    </form>
+  </section>
+</div>
+{% endblock %}

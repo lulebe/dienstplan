@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
   if (!foundUser)
     return res.redirect('/?status=2')
   const pw = generator.generate({length: 10, numbers: true})
-  foundUser.password = await bcrypt.hash(pw, await bcrypt.genSalt(10))
+  foundUser.password = await bcrypt.hash(pw, await bcrypt.genSalt(config.SALT_ROUNDS))
   await foundUser.save()
   console.log(foundUser.email, pw)
   await sendEmail(foundUser.email, foundUser.firstName + ' ' + foundUser.lastName, pw)

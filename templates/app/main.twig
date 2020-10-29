@@ -6,9 +6,9 @@
 <div class="wrapper">
   <h2>Dienstpläne</h2>
 
-  <ul class="plans">
+  <ul>
     {% for plan in plans %}
-    <li class="plan"><a href="/app/plan/{{plan.id}}">{{plan.name}}</a></li>
+    <li><a href="/app/plan/{{plan.id}}" class="main-text">{{plan.name}}</a></li>
     {% endfor %}
   </ul>
   {% if user.isAdmin %}

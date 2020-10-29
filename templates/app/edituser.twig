@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block title %}Nutzerverwaltung{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+  <h2>Admin-Panel</h2>
+
+  <h3>{{u.firstName}} {{u.lastName}}</h3>
+  
+  {% if u.isAdmin %}
+    <form action="" method="post" onsubmit="return confirm('{{u.firstName}} {{u.lastName}} die Adminrechte entziehen?');">
+      <input type="submit" name="removeAdmin" value="Adminrechte entziehen">
+    </form>
+  {% else %}
+  <form action="" method="post" onsubmit="return confirm('{{u.firstName}} {{u.lastName}} Adminrechte gewähren?');">
+    <input type="submit" name="makeAdmin" value="Adminrechte gewähren">
+  </form>
+  {% endif %}
+  <br>
+  <form action="" method="post" onsubmit="return confirm('{{u.firstName}} {{u.lastName}} unwiederruflich löschen?');">
+    <input type="submit" name="delete" value="Account löschen">
+  </form>
+
+</div>
+{% endblock %}

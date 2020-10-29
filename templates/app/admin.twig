@@ -1,0 +1,39 @@
+{% extends "base.twig" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+  <h2>Admin-Panel</h2>
+
+  {% if successMsg is defined %}
+  <div class="msgcard success">{{successMsg}}</div>
+  {% endif %}
+
+  {% if errorMsg is defined %}
+  <div class="msgcard error">{{errorMsg}}</div>
+  {% endif %}
+
+  <h3>Nutzerverwaltung</h3>
+  <ul>
+    {% for u in users %}
+      <li class="endpad">
+        <span class="main-text">{{u.firstName}} {{u.lastName}}</span>
+        <a href="/app/admin/edituser/{{u.id}}" class="end-btn"><i class="material-icons">edit</i></a>
+        </li>
+    {% endfor %}
+  </ul>
+  <section class="card">
+    <h3>Neuen Nutzer anlegen</h3>
+    <form method="post">
+      <input type="text" name="firstName" placeholder="Vorname">
+      <input type="text" name="lastName" placeholder="Nachname">
+      <input type="email" name="email" placeholder="E-Mail">
+      <input type="checkbox" name="isAdmin" id="admincb">
+      <label for="admincb">Adminrechte gewähren</label><br><br>
+      <input type="submit" name="createUser" value="Nutzer erstellen">
+    </form>
+  </section>
+  
+</div>
+{% endblock %}

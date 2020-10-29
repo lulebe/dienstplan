@@ -1,4 +1,5 @@
 module.exports = {
+  SALT_ROUNDS: 10,
   DB_USER: process.env.DB_USER || "root",
   DB_PASSWORD: process.env.DB_PASSWORD || "testpw",
   PORT: process.env.PORT || 8080,

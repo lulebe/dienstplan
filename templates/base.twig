@@ -12,15 +12,15 @@
     <header id="top-bar">
       <a href="/app/main" id="home-link">Dienstplan</a>
       <nav id="main-nav">
-        {% if isAdmin %}<a href="/admin"><i class="material-icons">admin_panel_settings</i>Admin</a>{% endif %}
-        <a href="/app/profile"><i class="material-icons">account_box</i>Profile</a>
+        {% if user.isAdmin %}<a href="/app/admin"><i class="material-icons">admin_panel_settings</i>Admin</a>{% endif %}
+        <a href="/app/profile"><i class="material-icons">account_box</i>Profil</a>
         <a href="/app/logout"><i class="material-icons">lock</i>log out</a>
       </nav>
       <input type="checkbox" id="mobile-nav-btn">
       <label for="mobile-nav-btn">Menü</label>
       <nav id="mobile-nav">
-        {% if isAdmin %}<a href="/admin"><i class="material-icons">admin_panel_settings</i>Admin</a>{% endif %}
-        <a href="/app/profile"><i class="material-icons">account_box</i>Profile</a>
+        {% if user.isAdmin %}<a href="/app/admin"><i class="material-icons">admin_panel_settings</i>Admin</a>{% endif %}
+        <a href="/app/profile"><i class="material-icons">account_box</i>Profil</a>
         <a href="/app/logout"><i class="material-icons">lock</i>log out</a>
       </nav>
     </header>

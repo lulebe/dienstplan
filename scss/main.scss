@@ -38,6 +38,9 @@ button, input[type=submit] {
   &:hover {
     color: white;
     background: $primary-color;
+    .material-icons:first-child:last-child {
+      color: grey;
+    }
   }
 }
 
@@ -58,9 +61,13 @@ hr {
 i.material-icons {
   position: relative;
   top: 6px;
+  &.up {
+    top: 2px;
+  }
 }
 
 @import "nav";
 @import "cards";
 @import "login";
-@import "plans";
+@import "lists";
+@import "admin";

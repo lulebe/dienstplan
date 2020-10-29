@@ -37,6 +37,9 @@ button:hover, input[type=submit]:hover {
   color: white;
   background: #18f;
 }
+button:hover .material-icons:first-child:last-child, input[type=submit]:hover .material-icons:first-child:last-child {
+  color: grey;
+}
 
 hr {
   border: none;
@@ -55,6 +58,9 @@ hr {
 i.material-icons {
   position: relative;
   top: 6px;
+}
+i.material-icons.up {
+  top: 2px;
 }
 
 header#top-bar {
@@ -162,6 +168,25 @@ nav#mobile-nav {
   border-radius: 4px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
   background: white;
+  padding: 16px 16px 16px 16px;
+}
+.card > h3 {
+  margin: 0;
+}
+
+.msgcard {
+  width: 100%;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+  margin-bottom: 16px;
+  color: white;
+}
+.msgcard.success {
+  background-color: #0b5;
+}
+.msgcard.error {
+  background-color: #b22;
 }
 
 #splash {
@@ -182,7 +207,6 @@ nav#mobile-nav {
   margin: 48px auto;
   width: 100%;
   max-width: 480px;
-  padding: 1px 16px 16px 16px;
 }
 
 input[type=text], input[type=password], input[type=email] {
@@ -197,20 +221,42 @@ input[type=text], input[type=password], input[type=email] {
   background: white;
 }
 
-ul.plans {
+ul {
   list-style: none;
   padding: 0;
 }
-ul.plans li.plan a {
-  display: block;
-  padding: 12px;
-  color: black;
+ul li {
+  line-height: 48px;
+  display: flex;
+  flex-direction: row;
 }
-ul.plans li.plan:nth-child(odd) {
+ul li .main-text {
+  display: block;
+  padding-left: 12px;
+  color: black;
+  flex-grow: 1;
+}
+ul li a.main-text {
+  padding-right: 12px;
+}
+ul li a.main-text:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+ul li .end-btn {
+  display: inline-block;
+  flex-grow: unset;
+  width: 48px;
+  text-align: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+ul li:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.05);
 }
-ul.plans li.plan:hover {
-  background-color: rgba(0, 0, 0, 0.15);
+ul li.endpad {
+  padding-right: 12px;
 }
 
 
