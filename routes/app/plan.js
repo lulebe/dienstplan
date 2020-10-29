@@ -1,11 +1,24 @@
 const tmpl = require.main.require('./templates')
-const { Plan } = require.main.require('./db')
+const { Plan, Shift, User } = require.main.require('./db')
 const dates = require.main.require('./dates')
 
 module.exports = async (req, res) => {
-  const plan = await Plan.findByPk(req.params.planId)
+  const plan = await Plan.findByPk(req.params.planId, {include: [{model: Shift, include: 'pickedUser'}]})
   res.tmplOpts.plan = plan.dataValues
+  res.tmplOpts.plan.Shifts = res.tmplOpts.plan.Shifts.map(shift => ({
+    id: shift.id,
+    priority: shift.priority,
+    start: shift.start,
+    end: shift.end,
+    startDateDisplay: dates.displayShiftDate(shift.start),
+    startTimeDisplay: dates.displayShiftTime(shift.start),
+    endTimeDisplay: dates.displayShiftTime(shift.end),
+    pickedUser: shift.User ? {id: shift.User.id, name: shift.user.firstName + ' ' + shift.user.lastName} : null
+  }))
+  console.log(res.tmplOpts.plan.Shifts.filter(s => s.pickedUser))
   res.tmplOpts.plan.start = dates.displayDate(res.tmplOpts.plan.start)
   res.tmplOpts.plan.end = dates.displayDate(res.tmplOpts.plan.end)
   tmpl.render('app/plan.twig', res.tmplOpts).then(rendered => res.end(rendered))
+  const us = await User.findByPk(1, {include: 'pickedShifts'})
+  console.log(us.toJSON())
 }

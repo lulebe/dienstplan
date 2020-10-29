@@ -56,6 +56,10 @@ const Shift = sequelize.define('Shift', {
   end: {
     type: DataTypes.DATE,
     allowNull: false
+  },
+  priority: {
+    type: DataTypes.TINYINT,
+    allowNull: false
   }
 }, {timestamps: false})
 
@@ -77,19 +81,39 @@ const PlanNote = sequelize.define('PlanNote', {
   }
 }, {timestamps: false})
 
-Plan.hasMany(Shift)
+Plan.hasMany(Shift, {
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
+})
 Shift.belongsTo(Plan)
 
-Shift.belongsToMany(User, {through: ShiftOption})
-User.belongsToMany(Shift, {through: ShiftOption})
+Shift.belongsToMany(User, {
+  through: ShiftOption,
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
+})
+User.belongsToMany(Shift, {
+  through: ShiftOption,
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
+})
 
-User.hasMany(Shift, {foreignKey: 'pickedUser'})
-Shift.belongsTo(User)
+User.hasMany(Shift, {
+  as: 'pickedShifts',
+  foreignKey: 'userId'
+})
+Shift.belongsTo(User, {as: 'pickedUser', foreignKey: 'userId'})
 
-User.hasMany(PlanNote)
+User.hasMany(PlanNote, {
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
+})
 PlanNote.belongsTo(User)
 
-Plan.hasMany(PlanNote)
+Plan.hasMany(PlanNote, {
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
+})
 PlanNote.belongsTo(Plan)
 
 const sessionStore = new SequelizeStore({

@@ -35,3 +35,50 @@ ul {
     }
   }
 }
+
+ul.shift-list {
+  li {
+    cursor: pointer;
+    &:not(:first-child) {
+      border-top: 1px solid lightgrey;
+    }
+    &:nth-child(odd) {
+      background: none;
+    }
+    &.priority-2 {
+      background-color: rgba(255,255,0,0.25);
+    }
+    &.priority-3 {
+      background-color: rgba(255,170,0,0.25);
+    }
+    span.date {
+      display: inline-block;
+      width: 90px;
+    }
+    span.time {
+      display: inline-block;
+      width: 105px;
+      padding-left: 16px;
+      font-size: 0.8rem;
+    }
+    .selection-indicator {
+      display: inline-block;
+      height: 100%;
+      width: 16px;
+      background: none;
+    }
+  }
+  li[data-shift-status="1"] .selection-indicator {
+    background-color: green;
+  }
+  li[data-shift-status="2"] .selection-indicator {
+    background-color: darkorange;
+  }
+  li[data-shift-picked] {
+    font-weight: bold;
+    > .selection-indicator {
+      background-color: $primary-color;
+      width: 24px;
+    }
+  } 
+}

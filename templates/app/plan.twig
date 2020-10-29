@@ -7,5 +7,34 @@
   <h2>Dienstplan {{plan.name}}</h2>
   von {{plan.start}} bis {{plan.end}}
   
+  <h3>Dienste</h3>
+  <ul class="shift-list">
+    {% for shift in plan.Shifts %}
+      <li class="priority-{{shift.priority}}" data-shift-id="{{shift.id}}" data-shift-status="0">
+        <span class="selection-indicator">&nbsp;</span>
+        <span class="main-text">
+          <span class="date">{{shift.startDateDisplay}}</span>
+          <span class="time">{{shift.startTimeDisplay}} - {{shift.endTimeDisplay}}</span>
+          {{shift.pickedUser}}
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
 </div>
+{% endblock %}
+
+{% block js %}
+<script>
+const lis = document.querySelectorAll(".shift-list li")
+for (let i = 0; i < lis.length; i++) {
+  const element = lis[i];
+  element.addEventListener('click', (e) => {
+    console.log(e.currentTarget.dataset)
+    let status = 0+e.currentTarget.dataset.shiftStatus
+    status++
+    if (status > 3) status = 0
+    e.currentTarget.dataset.shiftStatus = status
+  })
+}
+</script>
 {% endblock %}

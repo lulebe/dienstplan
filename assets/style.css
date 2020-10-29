@@ -259,5 +259,50 @@ ul li.endpad {
   padding-right: 12px;
 }
 
+ul.shift-list li {
+  cursor: pointer;
+}
+ul.shift-list li:not(:first-child) {
+  border-top: 1px solid lightgrey;
+}
+ul.shift-list li:nth-child(odd) {
+  background: none;
+}
+ul.shift-list li.priority-2 {
+  background-color: rgba(255, 255, 0, 0.25);
+}
+ul.shift-list li.priority-3 {
+  background-color: rgba(255, 170, 0, 0.25);
+}
+ul.shift-list li span.date {
+  display: inline-block;
+  width: 90px;
+}
+ul.shift-list li span.time {
+  display: inline-block;
+  width: 105px;
+  padding-left: 16px;
+  font-size: 0.8rem;
+}
+ul.shift-list li .selection-indicator {
+  display: inline-block;
+  height: 100%;
+  width: 16px;
+  background: none;
+}
+ul.shift-list li[data-shift-status="1"] .selection-indicator {
+  background-color: green;
+}
+ul.shift-list li[data-shift-status="2"] .selection-indicator {
+  background-color: darkorange;
+}
+ul.shift-list li[data-shift-picked] {
+  font-weight: bold;
+}
+ul.shift-list li[data-shift-picked] > .selection-indicator {
+  background-color: #18f;
+  width: 24px;
+}
+
 
 /*# sourceMappingURL=style.css.map*/
