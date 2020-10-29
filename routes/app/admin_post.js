@@ -4,6 +4,7 @@ const generator = require('generate-password')
 
 const config = require.main.require('./config')
 const { User } = require.main.require('./db')
+const mailer = require.main.require('./email')
 
 module.exports = async (req, res, next) => {
   if (req.body.createUser) {
@@ -26,10 +27,9 @@ module.exports = async (req, res, next) => {
 }
 
 function sendPwMail (email, name, pw) {
-  return sgMail.send({
-    to: email,
-    from: 'dienstplan@lulebe.net',
-    subject: 'Account erstellt',
-    text: 'Hallo ' + name + ',\n\ndein Account auf dienstplan.lulebe.net wurde mit folgendem Passwort angelegt:\n\n' + pw
-  })
+  return mailer(
+    email,
+    'Account erstellt',
+    'Hallo ' + name + ',\n\ndein Account auf dienstplan.lulebe.net wurde mit folgendem Passwort angelegt:\n\n' + pw
+  )
 }

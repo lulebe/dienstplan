@@ -1,11 +1,9 @@
 const bcrypt = require('bcrypt')
 const generator = require('generate-password')
-const sgMail = require('@sendgrid/mail')
 
+const mailer = require.main.require('./email')
 const config = require.main.require('./config')
 const { User } = require.main.require('./db')
-
-sgMail.setApiKey(config.SENDGRID_KEY)
 
 module.exports = async (req, res) => {
   console.log(req.body.email)
@@ -22,11 +20,6 @@ module.exports = async (req, res) => {
   res.redirect('/?status=1')
 }
 
-function sendEmail (email, name, pw) {
-  return sgMail.send({
-    to: email,
-    from: 'dienstplan@lulebe.net',
-    subject: 'Passwort zurückgesetzt',
-    text: 'Dein neues Dienstplan-Passwort lautet: ' + pw
-  })
+function sendEmail (email, pw) {
+  return mailer(email, 'Passwort zurückgesetzt', 'Dein neues Dienstplan-Passwort lautet: ' + pw)
 }

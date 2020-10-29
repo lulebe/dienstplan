@@ -20,7 +20,25 @@
       <input type="password" name="pwold" placeholder="altes Passwort">
       <input type="password" name="pwnew" placeholder="neues Passwort">
       <input type="password" name="pwnewmatch" placeholder="neues Passwort wiederholen">
-      <input type="submit" value="Passwort ändern">
+      <input type="submit" name="pwChange" value="Passwort ändern">
+    </form>
+  </section>
+  <br><br>
+  <section class="card">
+    <h3>E-Mail ändern</h3>
+    bisherige Adresse: {{user.email}}<br>
+    <form method="post">
+      <input type="email" name="newmail" placeholder="neue E-Mail-Adresse">
+      <input type="submit" name="mailChange" value="E-Mail ändern">
+    </form>
+  </section>
+  <br><br>
+  <section class="card">
+    <h3>Daten ändern</h3>
+    <form method="post">
+      <input type="text" name="firstName" placeholder="Vorname">
+      <input type="text" name="lastName" placeholder="Nachname">
+      <input type="submit" name="nameChange" value="speichern">
     </form>
   </section>
 </div>
