@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "brunch build",
-    "watch": "brunch watch",
+    "watch-build": "brunch watch",
     "start": "node .",
+    "watch-server": "nodemon -e js,twig,json",
     "dbinit": "node ./init-db.js"
   },
   "repository": {
@@ -17,11 +18,14 @@
   "author": "Leander Berg",
   "license": "MIT",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "@sendgrid/mail": "^7.3.0",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "connect-session-sequelize": "^7.0.4",
+    "date-holidays": "^1.8.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "generate-password": "^1.5.1",
     "mariadb": "^2.5.1",
     "sequelize": "^6.3.5",
     "twing": "^5.0.2",
@@ -29,6 +33,7 @@
   },
   "devDependencies": {
     "brunch": "^3.0.0",
+    "nodemon": "^2.0.6",
     "sass-brunch": "^3.0.0"
   }
 }

@@ -1,11 +1,15 @@
 const tmpl = require.main.require('./templates')
 
 module.exports = (req, res) => {
+  if (req.session.userId)
+    return res.redirect('/app/main')
   tmpl.render('index.twig', {isLoggedIn: false, isAdmin: false, hasError: !!req.query.status, errorMsg: makeMsg(req.query.status)}).then(rendered => res.end(rendered))
 }
 
 function makeMsg (code) {
   switch (code) {
+    case 0:
+      return "Bitte die benötigten Felder ausfüllen."
     case 1:
       return "Ein neues Passwort wurde per E-Mail zugestellt."
     case 2:

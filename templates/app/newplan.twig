@@ -1,0 +1,18 @@
+{% extends "base.twig" %}
+
+{% block title %}Neuer Plan{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+  <h2>Neuen Dienstplan anlegen</h2>
+
+
+  <form action="/app/newplan" method="post">
+    <input type="text" name="name" placeholder="Dienstplan-Name">
+    von:<br><input type="date" name="startdate"> <input type="time" name="starttime"><br><br>
+    bis:<br><input type="date" name="enddate"> <input type="time" name="endtime"><br><br>
+    <input type="submit" value="erstellen">
+  </form>
+  
+</div>
+{% endblock %}

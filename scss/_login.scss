@@ -1,9 +1,15 @@
 #splash {
   background: $primary-color;
   color: white;
-  font-size: 50px;
+  font-size: 3rem;
   text-align: center;
   line-height: 300px;
+}
+@media (max-width: 440px) {
+  #splash {
+    font-size: 2rem;
+    line-height: 150px;
+  }
 }
 
 .login-area {

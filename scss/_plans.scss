@@ -1,0 +1,17 @@
+ul.plans {
+  list-style: none;
+  padding: 0;
+  li.plan {
+    a {
+      display: block;
+      padding: 12px;
+      color: black;
+    }
+    &:nth-child(odd) {
+      background-color: rgba(0,0,0,0.05);
+    }
+    &:hover {
+      background-color: rgba(0,0,0,0.15);
+    }
+  }
+}
