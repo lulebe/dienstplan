@@ -7,6 +7,8 @@
   <h2>Admin-Panel</h2>
 
   <h3>{{u.firstName}} {{u.lastName}}</h3>
+
+  Administrator: {{ u.isAdmin ? 'Ja' : 'Nein' }}<br><br>
   
   {% if u.isAdmin %}
     <form action="" method="post" onsubmit="return confirm('{{u.firstName}} {{u.lastName}} die Adminrechte entziehen?');">
