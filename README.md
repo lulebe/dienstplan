@@ -4,7 +4,7 @@ Simple (German) Node.js App for work shift scheduling.
 
 ## Requirements
 1. NodeJS >= v12 & npm/yarn
-2. mariadb (or similar db compatible with sequelize) server
+2. mariadb (currently using v 10.x) (or similar db compatible with sequelize) server
 3. sendgrid account & api tokens
 
 ## running the App
