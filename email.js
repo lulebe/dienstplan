@@ -1,15 +1,30 @@
-const sgMail = require('@sendgrid/mail')
+const mailjet = require ('node-mailjet')
 
 const config = require('./config')
 
-sgMail.setApiKey(config.SENDGRID_KEY)
+mailjet.connect(config.MJ_APIKEY_PUBLIC, config.MJ_APIKEY_PRIVATE)
 
 module.exports = function (email, subject, name, text, html) {
-  return sgMail.send({
+  /* return sgMail.send({
     to: email,
     from: 'dienstplan@lulebe.net',
     subject,
     text: 'Hallo ' + name + ',\n\n' + text + '\n\nViele Grüße,\ndas Dienstplan-Team',
     html: 'Hallo ' + name + ',<br><br>' + html + '<br><br>Viele Grüße,<br>das Dienstplan-Team'
-  })
+  }) */
+  return mailjet.post("send", {'version': 'v3.1'}).request({
+        "Messages":[{
+            "From": {
+                "Email": "dienstplan@lulebe.net",
+                "Name": "Dienstplan-KKH"
+            },
+            "To": [{
+                "Email": email,
+                "Name": name
+            }],
+            "Subject": subject,
+            "TextPart": 'Hallo ' + name + ',\n\n' + text + '\n\nViele Grüße,\ndas Dienstplan-Team',
+            "HTMLPart": 'Hallo ' + name + ',<br><br>' + html + '<br><br>Viele Grüße,<br>das Dienstplan-Team'
+        }]
+    })
 }
