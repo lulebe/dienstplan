@@ -7,7 +7,7 @@ const config = require('./config')
 const sequelize = new Sequelize('dienstplan', config.DB_USER, config.DB_PASSWORD, {
   host: 'localhost',
   dialect: 'mariadb',
-  logging: config.production ? console.log : false
+  logging: config.production ? false : console.log
 })
 
 const User = sequelize.define('User', {
