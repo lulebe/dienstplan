@@ -24,7 +24,7 @@ a:hover {
   color: #039;
 }
 
-button, input[type=submit] {
+button, input[type=submit], .btn {
   border-radius: 50px;
   border: 1px solid #18f;
   font-size: 1rem;
@@ -33,11 +33,11 @@ button, input[type=submit] {
   outline: none;
   cursor: pointer;
 }
-button:hover, input[type=submit]:hover {
+button:hover, input[type=submit]:hover, .btn:hover {
   color: white;
   background: #18f;
 }
-button:hover .material-icons:first-child:last-child, input[type=submit]:hover .material-icons:first-child:last-child {
+button:hover .material-icons:first-child:last-child, input[type=submit]:hover .material-icons:first-child:last-child, .btn:hover .material-icons:first-child:last-child {
   color: grey;
 }
 
@@ -82,6 +82,38 @@ hr {
   padding: 16px;
   max-width: 800px;
   margin: 0 auto;
+}
+
+.schedule-top-wrapper {
+  width: 100%;
+  padding: 16px;
+  margin: 0;
+  height: 136px;
+  position: relative;
+}
+
+.wrapper-2-col {
+  width: 100%;
+  padding: 16px;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 30% 70%;
+  height: calc(100vh - 200px);
+}
+.wrapper-2-col .grid-col.top {
+  grid-column: 1/span 2;
+  grid-row: 1/span 1;
+}
+.wrapper-2-col .grid-col.left {
+  grid-column: 1/span 1;
+  grid-row: 1/span 1;
+}
+.wrapper-2-col .grid-col {
+  grid-column: 2/span 1;
+  grid-row: 1/span 1;
+  padding: 0 16px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 i.material-icons {
@@ -202,6 +234,14 @@ nav#mobile-nav {
 .card > h3 {
   margin: 0;
 }
+.card.selectable {
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.card.selectable.selected {
+  border: 2px solid #18f;
+  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.3);
+}
 
 .msgcard {
   width: 100%;
@@ -276,8 +316,25 @@ ul li.endpad {
   padding-right: 12px;
 }
 
-ul.shift-list li {
+ul.shift-list.users li {
   cursor: pointer;
+}
+ul.shift-list.users li[data-shift-picked] {
+  font-weight: bold;
+}
+ul.shift-list.users li[data-shift-picked] > .selection-indicator {
+  width: 24px;
+}
+
+ul.shift-list:not(.users) li span.shift-option {
+  cursor: pointer;
+}
+ul.shift-list:not(.users) li span.shift-option:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+ul.shift-list {
+  user-select: none;
 }
 ul.shift-list li:not(:first-child) {
   border-top: 1px solid lightgrey;
@@ -293,13 +350,27 @@ ul.shift-list li.priority-3 {
 }
 ul.shift-list li span.date {
   display: inline-block;
-  width: 90px;
+  width: 85px;
 }
 ul.shift-list li span.time {
   display: inline-block;
   width: 105px;
-  padding-left: 16px;
   font-size: 0.8rem;
+}
+ul.shift-list li span.shift-option {
+  display: inline-block;
+  margin-left: 8px;
+  border-radius: 50%;
+  border: 1px solid grey;
+  height: 44px;
+  margin-top: 2px;
+  width: 44px;
+  line-height: 44px;
+  text-align: center;
+}
+ul.shift-list li span.shift-option.picked {
+  background-color: #18f;
+  color: white;
 }
 ul.shift-list li .selection-indicator {
   display: inline-block;
@@ -313,12 +384,8 @@ ul.shift-list li[data-shift-status="1"] .selection-indicator {
 ul.shift-list li[data-shift-status="2"] .selection-indicator {
   background-color: darkorange;
 }
-ul.shift-list li[data-shift-picked] {
-  font-weight: bold;
-}
 ul.shift-list li[data-shift-picked] > .selection-indicator {
   background-color: #18f;
-  width: 24px;
 }
 
 

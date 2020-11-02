@@ -4,6 +4,28 @@
 
 {% block content %}
 <div class="wrapper">
+
+  {% if user.isAdmin %}
+    <h3>Anleitung für Admins:</h3>
+    <h5>Nutzerverwaltung</h5>
+    <p>
+      Im Menü das Adminpanel öffnen, dort können Nutzer angelegt werden (Name, E-Mail benötigt). Das Passwort wird dem Nutzer per Mail zugestellt.
+      Ein Klick auf den Stift in der Nutzerliste erlaubt es, dem Nutzer Adminrechte zu geben oder zu entziehen und ihn zu löschen.
+    </p>
+    <h5>Dienstpläne</h5>
+    <p>
+      Unten auf dieser Seite kann ein neuer Plan angelegt werden.
+      Danach Start- und Enddatum wählen und einen Namen (üblicherweise Monat und Jahr) vergeben.
+      Gegebenenfalls den Plan nicht exakt an den Monatsgrenzen ausrichten, sondern eine sinnvolle Einteilung wählen.
+      Z.B. 31. Samstag und 1. Sonntag, dann den Plan bis Sonntag machen.
+    </p>
+    <h5>Planung</h5>
+    <p>
+      Auf der Seite des einzelnen Plans kann über einen "Plan erstellen" Button der finale Diestnplan erstellt werden.
+      Dort werden auch die Wünsche etc angezeigt.
+    </p>
+  {% endif %}
+
   <h2>Dienstpläne</h2>
 
   <ul>

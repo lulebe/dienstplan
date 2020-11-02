@@ -24,7 +24,7 @@ module.exports = function (startdate, enddate) {
     nightStart.setMinutes(0)
     const nightEnd = new Date(currentDate)
     currentDate.setDate(currentDate.getDate() + 1)
-    nightEnd.setHours(needsDayshift(currentDate) ? 8 : 7)
+    nightEnd.setHours(needsDayshift(currentDate) ? 9 : 7)
     nightEnd.setMinutes(0)
     nightEnd.setDate(nightEnd.getDate() + 1)
     const nightPriority = 1 //night lowest priority

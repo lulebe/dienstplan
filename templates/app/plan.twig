@@ -6,19 +6,40 @@
 <div class="wrapper">
   <h2>Dienstplan {{plan.name}}</h2>
   von {{plan.start}} bis {{plan.end}}
+
+  <p>
+    <strong>Anleitung:</strong>
+    <ol>
+      <li>
+        Mögliche Schichten auswählen.<br>
+        1 Klick = grün = "Ich bin verfügbar".<br>
+        2 Klicks = gelb = "Falls nötig".
+      </li>
+      <li>
+        "Auswahl speichern"
+      </li>
+      <li>
+        In der Notiz (ganz unten) mögliche Wünsche und maximale Anzahl Nächte und Tage eintragen und Notiz speichern.
+      </li>
+    </ol>
+  </p>
   
+  {% if user.isAdmin %}
+    <a href="./{{plan.id}}/scheduling" class="btn">Plan erstellen</a>
+  {% endif %}
+
   <h3>Dienste</h3>
-  <ul class="shift-list">
+  <ul class="shift-list users">
     {% for shift in plan.Shifts %}
       <li class="priority-{{shift.priority}}" data-shift-id="{{shift.id}}" data-shift-status="{{shift.myStatus}}">
         <span class="selection-indicator">&nbsp;</span>
         <span class="main-text">
           <span class="date">{{shift.startDateDisplay}}</span>
           <span class="time">{{shift.startTimeDisplay}} - {{shift.endTimeDisplay}}</span>
+          <strong>{{shift.pickedUser.name}}</strong>
           {% for option in shift.otherOptions %}
-            {{option.User.initials}}&nbsp;
+            <span class="shift-option">{{option.User.initials}}</span>
           {% endfor %}
-          {{shift.pickedUser}}
         </span>
       </li>
     {% endfor %}

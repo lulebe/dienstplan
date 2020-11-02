@@ -1,0 +1,97 @@
+{% extends "base.twig" %}
+
+{% block title %}Planung {{plan.name}}{% endblock %}
+
+{% block content %}
+<div class="schedule-top-wrapper">
+  <h2>Planung {{plan.name}}</h2>
+  von {{plan.start}} bis {{plan.end}}
+  <br>Mitarbeiter mit "?" hinter den Initialen haben "falls nötig" angegeben.
+  <div style="position: absolute; bottom: 16px; right: 16px;">
+    <button onclick="sendPicks()">Planung speichern</button>
+    <form style="display: none" method="post" id="form-shift-picks">
+      <input type="hidden" name="shiftPicks" value="" id="inp-shift-picks">
+    </form>
+  </div>
+</div>
+<div class="wrapper-2-col">
+  <div class="grid-col left">
+    <h3>Mitarbeiter</h3>
+    {% for note in plan.PlanNotes %}
+      <section class="card user-note" data-user-id="{{note.UserId}}">
+        <h5 style="margin-top: 0;">{{note.User.fullName}}</h5>
+        Nächte maximal: {{note.maxNights}}<br>
+        Tage maximal: {{note.maxDays}}<br>
+        <p>{{note.Notes}}</p>
+      </section>
+      <br>
+    {% endfor %}
+  </div>
+  <div class="grid-col">
+    <h3>Dienste</h3>
+    <ul class="shift-list">
+      {% for shift in plan.Shifts %}
+        <li class="priority-{{shift.priority}}" data-shift-id="{{shift.id}}" {{shift.pickedUser ? "data-shift-picked" : ""}}>
+          <span class="selection-indicator">&nbsp;</span>
+          <span class="main-text">
+            <span class="date">{{shift.startDateDisplay}}</span>
+            <span class="time">{{shift.startTimeDisplay}} - {{shift.endTimeDisplay}}</span>
+            <strong>{{shift.pickedUser.name}}</strong>
+            {% for option in shift.options %}
+              <span class="shift-option {% if shift.pickedUser.id == option.User.id %}picked{% endif %}" data-user-id="{{option.User.id}}" data-shift-id="{{shift.id}}" onclick="assignShift(this)">{{option.User.initials}}{{option.ifNeeded ? "?" : ""}}</span>
+            {% endfor %}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+
+function sendPicks () {
+  const shiftPicks = {}
+  const els = document.querySelectorAll('.shift-option.picked')
+  for (let i = 0; i < els.length; i++) {
+    const el = els[i];
+    shiftPicks[el.dataset.shiftId] = parseInt(el.dataset.userId)
+  }
+  document.getElementById('inp-shift-picks').value = JSON.stringify(shiftPicks)
+  document.getElementById('form-shift-picks').submit()
+}
+
+var selectedUserId = null
+function selectUser (el) {
+  if (el.classList.contains('selected')) {
+    el.classList.remove('selected')
+    selectedUserId = null
+  } else {
+    const els = document.querySelectorAll('.user-note.selected')
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList.remove('selected')
+    }
+    el.classList.add('selected')
+  }
+  selectUserId = el.dataset.userId 
+}
+
+function assignShift (el) {
+  const userId = el.dataset.UserId
+  const shiftId = el.dataset.shiftId
+  const isPicked = el.classList.contains('picked')
+  if (isPicked) { //unassign user
+    el.classList.remove('picked')
+    el.parentElement.parentElement.removeAttribute('data-shift-picked')
+  } else { //assign user
+    const els = el.parentElement.querySelectorAll('.picked')
+    for (let i = 0; i < els.length; i++) {
+      els[i].classList.remove('picked')
+    }
+    el.classList.add('picked')
+    el.parentElement.parentElement.setAttribute('data-shift-picked', true)
+  }
+}
+</script>
+{% endblock %}

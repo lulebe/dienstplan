@@ -36,9 +36,26 @@ ul {
   }
 }
 
-ul.shift-list {
+ul.shift-list.users {
   li {
     cursor: pointer;
+  }
+  li[data-shift-picked] {
+    font-weight: bold;
+    > .selection-indicator {
+      width: 24px;
+    }
+  } 
+}
+ul.shift-list:not(.users) li span.shift-option {
+  cursor: pointer;
+      &:hover {
+        background-color: rgba(0,0,0,0.1);
+      }
+}
+ul.shift-list {
+  user-select: none;
+  li {
     &:not(:first-child) {
       border-top: 1px solid lightgrey;
     }
@@ -53,13 +70,27 @@ ul.shift-list {
     }
     span.date {
       display: inline-block;
-      width: 90px;
+      width: 85px;
     }
     span.time {
       display: inline-block;
       width: 105px;
-      padding-left: 16px;
       font-size: 0.8rem;
+    }
+    span.shift-option {
+      display: inline-block;
+      margin-left: 8px;
+      border-radius: 50%;
+      border: 1px solid grey;
+      height: 44px;
+      margin-top: 2px;
+      width: 44px;
+      line-height: 44px;
+      text-align: center;
+      &.picked {
+        background-color: $primary-color;
+        color: white;
+      }
     }
     .selection-indicator {
       display: inline-block;
@@ -74,11 +105,7 @@ ul.shift-list {
   li[data-shift-status="2"] .selection-indicator {
     background-color: darkorange;
   }
-  li[data-shift-picked] {
-    font-weight: bold;
-    > .selection-indicator {
-      background-color: $primary-color;
-      width: 24px;
-    }
-  } 
+  li[data-shift-picked] > .selection-indicator {
+    background-color: $primary-color;
+  }
 }
