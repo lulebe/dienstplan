@@ -10,6 +10,6 @@ module.exports = function (email, subject, name, text, html) {
     from: 'dienstplan@lulebe.net',
     subject,
     text: 'Hallo ' + name + ',\n\n' + text + '\n\nViele Grüße,\ndas Dienstplan-Team',
-    html: 'Hallo ' + name + ',\n\n' + html + '\n\nViele Grüße,\ndas Dienstplan-Team'
+    html: 'Hallo ' + name + ',<br><br>' + html + '<br><br>Viele Grüße,<br>das Dienstplan-Team'
   })
 }
