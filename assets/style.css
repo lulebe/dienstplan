@@ -41,7 +41,7 @@ button:hover .material-icons:first-child:last-child, input[type=submit]:hover .m
   color: grey;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=number] {
+input[type=text], input[type=password], input[type=email], input[type=number], input[type=tel] {
   display: block;
   width: 100%;
   margin: 16px auto;
@@ -52,7 +52,7 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
   outline: none;
   background: white;
 }
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus, input[type=tel]:focus {
   border-color: #18f;
 }
 

@@ -36,6 +36,8 @@ appRouter.post('/plan/:planId', [require('./routes/app/plan_post')], require('./
 appRouter.get('/plan/:planId/scheduling', [onlyAdmin], require('./routes/app/scheduling'))
 appRouter.post('/plan/:planId/scheduling', [onlyAdmin, require('./routes/app/scheduling_post')], require('./routes/app/scheduling'))
 
+appRouter.get('/plan/:planId/export', require('./routes/app/export'))
+
 async function userHandler (req, res, next) {
   if (!req.session.userId)
     return res.redirect('/')

@@ -14,6 +14,7 @@ module.exports = async (req, res, next) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
+        phone: req.body.phone,
         isAdmin: !!req.body.isAdmin,
         password: await bcrypt.hash(pw, await bcrypt.genSalt(config.SALT_ROUNDS))
       })

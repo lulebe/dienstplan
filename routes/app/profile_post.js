@@ -7,6 +7,7 @@ module.exports = async (req, res, next) => {
   if (req.body.pwChange) await pwChange(req, res, next)
   else if (req.body.mailChange) await mailChange(req, res, next)
   else if (req.body.nameChange) await nameChange(req, res, next)
+  else if (req.body.phoneChange) await phoneChange(req, res, next)
   next()
 }
 
@@ -14,6 +15,14 @@ async function nameChange (req, res) {
   if (req.body.firstName && req.body.lastName) {
     req.user.firstName = req.body.firstName
     req.user.lastName = req.body.lastName
+    await req.user.save()
+    res.tmplOpts.successMsg = "Änderungen gespeichert."
+  }
+}
+
+async function phoneChange (req, res) {
+  if (req.body.phone) {
+    req.user.phone = req.body.phone
     await req.user.save()
     res.tmplOpts.successMsg = "Änderungen gespeichert."
   }

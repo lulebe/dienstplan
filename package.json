@@ -1,6 +1,6 @@
 {
   "name": "dienstplan",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "simple work shift scheduling",
   "main": "index.js",
   "scripts": {

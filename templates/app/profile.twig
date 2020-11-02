@@ -34,6 +34,15 @@
   </section>
   <br><br>
   <section class="card">
+    <h3>Handynummer ändern</h3>
+    bisherige Nummer: {{user.phone}}<br>
+    <form method="post">
+      <input type="tel" name="phone" placeholder="neue Handynummer">
+      <input type="submit" name="phoneChange" value="Nummer ändern">
+    </form>
+  </section>
+  <br><br>
+  <section class="card">
     <h3>Daten ändern</h3>
     <form method="post">
       <input type="text" name="firstName" placeholder="Vorname">
