@@ -29,7 +29,9 @@ appRouter.post('/admin/edituser/:userId', [onlyAdmin, require('./routes/app/edit
 
 appRouter.get('/newplan', [onlyAdmin], require('./routes/app/newplan'))
 appRouter.post('/newplan', [onlyAdmin], require('./routes/app/newplan_post'))
+
 appRouter.get('/plan/:planId', require('./routes/app/plan'))
+appRouter.post('/plan/:planId', [require('./routes/app/plan_post')], require('./routes/app/plan'))
 
 async function userHandler (req, res, next) {
   if (!req.session.userId)

@@ -20,6 +20,31 @@
       </li>
     {% endfor %}
   </ul>
+  <h3>Notizen</h3>
+  {% for note in plan.PlanNotes %}
+    <section class="card">
+      <h5 style="margin-top: 0;">{{note.User.fullName}}</h5>
+      Nächte maximal: {{note.maxNights}}<br>
+      Tage maximal: {{note.maxDays}}
+      <p>{{note.Notes}}</p>
+    </section>
+    <br>
+  {% endfor %}
+  <section class="card">
+    <h3>Meine Notiz</h3>
+    <br>
+    <form method="post">
+      <label for="inp-max-nights">Anzahl Nächte maximal</label>
+      <input type="number" name="maxNights" id="inp-max-nights" min="0" max="60" value="{{plan.myNote ? plan.myNote.maxNights : null}}" placeholder="10">
+      <br>
+      <label for="inp-max-days">Anzahl Tage maximal</label>
+      <input type="number" name="maxDays" id="inp-max-days" min="0" max="60" value="{{plan.myNote ? plan.myNote.maxDays : null}}" placeholder="5">
+      <br>
+      <label for="inp-note">Textnotiz</label>
+      <textarea name="note" id="inp-note" placeholder='z.B. "Am besten Dienste anfangs des Monats."'>{{plan.myNote ? plan.myNote.Notes : ''}}</textarea><br>
+      <input type="submit" name="saveNote" value="Notiz speichern">
+    </form>
+  </section>
 </div>
 {% endblock %}
 
@@ -32,7 +57,7 @@ for (let i = 0; i < lis.length; i++) {
     console.log(e.currentTarget.dataset)
     let status = 0+e.currentTarget.dataset.shiftStatus
     status++
-    if (status > 3) status = 0
+    if (status > 2) status = 0
     e.currentTarget.dataset.shiftStatus = status
   })
 }

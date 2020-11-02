@@ -30,6 +30,15 @@ const User = sequelize.define('User', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
     allowNull: false
+  },
+  fullName: {
+    type: DataTypes.VIRTUAL,
+    get () {
+      return `${this.firstName} ${this.lastName}`
+    },
+    set (value) {
+      throw new Error('Do not try to set the `fullName` value!')
+    }
   }
 })
 
@@ -71,10 +80,12 @@ const ShiftOption = sequelize.define('ShiftOption', {
 
 const PlanNote = sequelize.define('PlanNote', {
   maxNights: {
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    defaultValue: 10
   },
   maxDays: {
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    defaultValue: 5
   },
   Notes: {
     type: DataTypes.TEXT

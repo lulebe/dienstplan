@@ -7,9 +7,8 @@ module.exports = function (startdate, enddate) {
   const currentDate = new Date(startdate)
   while (currentDate <= enddate) {
     //add day shift if necessary
-    const isHoliday = holidays.isHoliday(currentDate) && holidays.isHoliday(currentDate).type === 'public'
-    const needsDayshift = currentDate.getDay() === 0 || currentDate.getDay() === 6 || isHoliday
-    if (needsDayshift) {
+    
+    if (needsDayshift(currentDate)) {
       const dayStart = new Date(currentDate)
       dayStart.setHours(8)
       dayStart.setMinutes(0)
@@ -21,15 +20,20 @@ module.exports = function (startdate, enddate) {
     }
     //add night shift
     const nightStart = new Date(currentDate)
-    nightStart.setHours(17)
+    nightStart.setHours(needsDayshift(currentDate) ? 20 : 17)
     nightStart.setMinutes(0)
     const nightEnd = new Date(currentDate)
-    nightEnd.setHours(7)
+    currentDate.setDate(currentDate.getDate() + 1)
+    nightEnd.setHours(needsDayshift(currentDate) ? 8 : 7)
     nightEnd.setMinutes(0)
     nightEnd.setDate(nightEnd.getDate() + 1)
     const nightPriority = 1 //night lowest priority
     shiftList.push({start: nightStart, end: nightEnd, priority: nightPriority})
-    currentDate.setDate(currentDate.getDate() + 1)
   }
   return shiftList
+}
+
+function needsDayshift (date) {
+  const isHoliday = holidays.isHoliday(currentDate) && holidays.isHoliday(currentDate).type === 'public'
+  return currentDate.getDay() === 0 || currentDate.getDay() === 6 || isHoliday
 }
