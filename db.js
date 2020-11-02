@@ -39,6 +39,15 @@ const User = sequelize.define('User', {
     set (value) {
       throw new Error('Do not try to set the `fullName` value!')
     }
+  },
+  initials: {
+    type: DataTypes.VIRTUAL,
+    get () {
+      return `${this.firstName.substr(0,1) + this.lastName.substr(0,1)}`
+    },
+    set (value) {
+      throw new Error('Do not try to set the `fullName` value!')
+    }
   }
 })
 
@@ -108,6 +117,10 @@ User.belongsToMany(Shift, {
   onDelete: 'CASCADE',
   onUpdate: 'CASCADE'
 })
+Shift.hasMany(ShiftOption)
+ShiftOption.belongsTo(Shift)
+User.hasMany(ShiftOption)
+ShiftOption.belongsTo(User)
 
 User.hasMany(Shift, {
   as: 'pickedShifts',

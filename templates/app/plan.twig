@@ -10,16 +10,24 @@
   <h3>Dienste</h3>
   <ul class="shift-list">
     {% for shift in plan.Shifts %}
-      <li class="priority-{{shift.priority}}" data-shift-id="{{shift.id}}" data-shift-status="0">
+      <li class="priority-{{shift.priority}}" data-shift-id="{{shift.id}}" data-shift-status="{{shift.myStatus}}">
         <span class="selection-indicator">&nbsp;</span>
         <span class="main-text">
           <span class="date">{{shift.startDateDisplay}}</span>
           <span class="time">{{shift.startTimeDisplay}} - {{shift.endTimeDisplay}}</span>
+          {% for option in shift.otherOptions %}
+            {{option.User.initials}}&nbsp;
+          {% endfor %}
           {{shift.pickedUser}}
         </span>
       </li>
     {% endfor %}
   </ul>
+  <button onclick="sendOptions()">Auswahl speichern</button>
+  <form style="display: none" method="post" id="form-shift-opts">
+    <input type="hidden" name="shiftOptions" value="" id="inp-shift-opts">
+  </form>
+  <br><br>
   <h3>Notizen</h3>
   {% for note in plan.PlanNotes %}
     <section class="card">
@@ -52,14 +60,23 @@
 <script>
 const lis = document.querySelectorAll(".shift-list li")
 for (let i = 0; i < lis.length; i++) {
-  const element = lis[i];
+  const element = lis[i]
   element.addEventListener('click', (e) => {
-    console.log(e.currentTarget.dataset)
     let status = 0+e.currentTarget.dataset.shiftStatus
     status++
     if (status > 2) status = 0
     e.currentTarget.dataset.shiftStatus = status
   })
+}
+function sendOptions() {
+  const shiftOptions = []
+  const l = document.querySelectorAll(".shift-list li")
+  for (let i = 0; i < l.length; i++) {
+    const el = l[i]
+    shiftOptions.push({id: parseInt(el.dataset.shiftId), status: parseInt(el.dataset.shiftStatus)})
+  }
+  document.getElementById('inp-shift-opts').value = JSON.stringify(shiftOptions)
+  document.getElementById('form-shift-opts').submit()
 }
 </script>
 {% endblock %}

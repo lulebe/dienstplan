@@ -1,10 +1,11 @@
-const config = require.main.require('./config')
-const { User, Plan, PlanNote } = require.main.require('./db')
+const { Op } = require("sequelize")
+
+const { Plan, PlanNote, ShiftOption, Shift } = require.main.require('./db')
 
 module.exports = async (req, res, next) => {
   req.plan = await Plan.findByPk(req.params.planId)
   if (req.body.saveNote) await saveNote(req, res)
-  if (req.body.saveOptions) await saveOptions(req, res)
+  if (req.body.shiftOptions) await saveOptions(req, res)
   next()
 }
 
@@ -20,5 +21,20 @@ async function saveNote (req, res) {
 }
 
 async function saveOptions (req, res) {
-
+  const opts = JSON.parse(req.body.shiftOptions)
+  const oldOptions = await ShiftOption.findAll({
+    where: {
+      UserId: req.user.id,
+      '$Shift.PlanId$': { [Op.eq]: req.plan.id }
+    },
+    include: [{
+      model: Shift
+    }]
+  })
+  await Promise.all(oldOptions.map(oo => oo.destroy()))
+  await ShiftOption.bulkCreate(opts.filter(o => o.status > 0).map(o => ({
+    UserId: req.user.id,
+    ShiftId: o.id,
+    ifNeeded: o.status === 2
+  })))
 }
