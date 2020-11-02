@@ -7,7 +7,6 @@ module.exports = function (startdate, enddate) {
   const currentDate = new Date(startdate)
   while (currentDate <= enddate) {
     //add day shift if necessary
-    
     if (needsDayshift(currentDate)) {
       const dayStart = new Date(currentDate)
       dayStart.setHours(8)
@@ -35,5 +34,6 @@ module.exports = function (startdate, enddate) {
 
 function needsDayshift (currentDate) {
   const isHoliday = holidays.isHoliday(currentDate) && holidays.isHoliday(currentDate).type === 'public'
-  return currentDate.getDay() === 0 || currentDate.getDay() === 6 || isHoliday
+  const isChristmas = currentDate.getMonth() == 11 && currentDate.getDate() == 24
+  return currentDate.getDay() === 0 || currentDate.getDay() === 6 || isHoliday || isChristmas
 }
