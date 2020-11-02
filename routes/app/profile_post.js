@@ -34,7 +34,7 @@ async function mailChange (req, res) {
     req.user.email = req.body.newmail
     await req.user.save()
     res.tmplOpts.successMsg = "Änderungen gespeichert."
-    sendMailchangeMails(oldmail, newmail, req.user.firstName + ' ' + req.user.lastName)
+    sendMailchangeMails(oldmail, req.body.newmail, req.user.firstName + ' ' + req.user.lastName)
   }
 }
 
