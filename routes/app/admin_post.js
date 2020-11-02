@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt')
-const sgMail = require('@sendgrid/mail')
 const generator = require('generate-password')
 
 const config = require.main.require('./config')

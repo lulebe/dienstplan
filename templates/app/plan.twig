@@ -25,11 +25,13 @@
   </p>
   
   {% if user.isAdmin %}
-    <a href="./{{plan.id}}/scheduling" class="btn">Plan erstellen</a>
-    <br>
-    <form action="./{{plan.id}}/delete" method="get" onsubmit="return confirm('Dienstplan {{plan.name}} wirklich löschen?');">
-      <input type="submit" value="Plan löschen">
-    </form>
+    <div style="display: flex; flex-direction: row;">
+      <a href="./{{plan.id}}/scheduling" class="btn">Plan erstellen</a>
+      <span style="flex-grow: 1;">&nbsp;</span>
+      <form action="./{{plan.id}}/delete" method="get" onsubmit="return confirm('Dienstplan {{plan.name}} wirklich löschen?');">
+        <input type="submit" value="Plan löschen">
+      </form>
+    </div>
     <br>
   {% endif %}
     <a href="./{{plan.id}}/export">Plan exportieren</a>
