@@ -16,10 +16,16 @@ module.exports = async (req, res) => {
   foundUser.password = await bcrypt.hash(pw, await bcrypt.genSalt(config.SALT_ROUNDS))
   await foundUser.save()
   console.log(foundUser.email, pw)
-  await sendEmail(foundUser.email, foundUser.firstName + ' ' + foundUser.lastName, pw)
+  await sendEmail(foundUser.email, foundUser.fullName, pw)
   res.redirect('/?status=1')
 }
 
-function sendEmail (email, pw) {
-  return mailer(email, 'Passwort zurückgesetzt', 'Dein neues Dienstplan-Passwort lautet: ' + pw)
+function sendEmail (email, name, pw) {
+  return mailer(
+    email,
+    'Passwort zurückgesetzt',
+    name,
+    'Dein neues Dienstplan-Passwort lautet:<br>' + pw,
+    'Dein neues Dienstplan-Passwort lautet:<br><pre>' + pw + '</pre>'
+    )
 }

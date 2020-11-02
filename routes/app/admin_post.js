@@ -31,6 +31,8 @@ function sendPwMail (email, name, pw) {
   return mailer(
     email,
     'Account erstellt',
-    'Hallo ' + name + ',\n\ndein Account auf dienstplan.lulebe.net wurde mit folgendem Passwort angelegt:\n\n' + pw
+    name,
+    'dein Account auf dienstplan.lulebe.net wurde mit folgendem Passwort angelegt:\n\n' + pw,
+    'dein Account auf <a href="dienstplan.lulebe.net">dienstplan.lulebe.net</a> wurde mit folgendem Passwort angelegt:<br><br><pre>' + pw + '</pre>'
   )
 }

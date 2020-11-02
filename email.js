@@ -4,11 +4,12 @@ const config = require('./config')
 
 sgMail.setApiKey(config.SENDGRID_KEY)
 
-module.exports = function (email, subject, text) {
+module.exports = function (email, subject, name, text, html) {
   return sgMail.send({
     to: email,
     from: 'dienstplan@lulebe.net',
     subject,
-    text
+    text: 'Hallo ' + name + ',\n\n' + text + '\n\nViele Grüße,\ndas Dienstplan-Team',
+    html: 'Hallo ' + name + ',\n\n' + html + '\n\nViele Grüße,\ndas Dienstplan-Team'
   })
 }

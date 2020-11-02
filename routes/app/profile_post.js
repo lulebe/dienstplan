@@ -34,7 +34,7 @@ async function mailChange (req, res) {
     req.user.email = req.body.newmail
     await req.user.save()
     res.tmplOpts.successMsg = "Änderungen gespeichert."
-    sendMailchangeMails(oldmail, req.body.newmail, req.user.firstName + ' ' + req.user.lastName)
+    sendMailchangeMails(oldmail, req.body.newmail, req.user.fullName)
   }
 }
 
@@ -53,8 +53,9 @@ async function pwChange (req, res) {
 }
 
 function sendMailchangeMails (oldMail, newMail, name) {
+  const text = 'deine hinterlegte Mailadresse wurde von ' + oldMail + ' zu ' + newMail + ' geändert.'
   return Promise.all([
-    mailer(oldMail, 'Dienstplan E-Mail geändert', 'Hallo ' + name + ',\n\ndeine hinterlegte Mailadresse wurde geändert von ' + oldMail + ' zu ' + newMail + '.'),
-    mailer(newMail, 'Dienstplan E-Mail geändert', 'Hallo ' + name + ',\n\ndeine hinterlegte Mailadresse wurde geändert von ' + oldMail + ' zu ' + newMail + '.')
+    mailer(oldMail, 'Dienstplan E-Mail geändert', name, text, text),
+    mailer(newMail, 'Dienstplan E-Mail geändert', name, text, text)
   ])
 }
