@@ -26,7 +26,11 @@
   
   {% if user.isAdmin %}
     <a href="./{{plan.id}}/scheduling" class="btn">Plan erstellen</a>
-    <a href="./{{plan.id}}/delete">Plan löschen</a>
+    <br>
+    <form action="./{{plan.id}}/delete" method="get" onsubmit="return confirm('Dienstplan {{plan.name}} wirklich löschen?');">
+      <input type="submit" value="Plan löschen">
+    </form>
+    <br>
   {% endif %}
     <a href="./{{plan.id}}/export">Plan exportieren</a>
 
