@@ -33,7 +33,7 @@ module.exports = function (startdate, enddate) {
   return shiftList
 }
 
-function needsDayshift (date) {
+function needsDayshift (currentDate) {
   const isHoliday = holidays.isHoliday(currentDate) && holidays.isHoliday(currentDate).type === 'public'
   return currentDate.getDay() === 0 || currentDate.getDay() === 6 || isHoliday
 }
