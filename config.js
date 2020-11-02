@@ -4,5 +4,6 @@ module.exports = {
   DB_PASSWORD: process.env.DB_PASSWORD || "testpw",
   PORT: process.env.PORT || 8080,
   COOKIE_SECRET: process.env.COOKIE_SECRET || "testsecret",
-  SENDGRID_KEY: process.env.SENDGRID_KEY || ""
+  SENDGRID_KEY: process.env.SENDGRID_KEY || "",
+  production: process.env.NODE_ENV === "production"
 }
