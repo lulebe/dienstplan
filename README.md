@@ -5,7 +5,7 @@ Simple (German) Node.js App for work shift scheduling.
 ## Requirements
 1. NodeJS >= v12 & npm/yarn
 2. mariadb (currently using v 10.x) (or similar db compatible with sequelize) server
-3. sendgrid account & api tokens
+3. mailjet account & api tokens
 
 ## running the App
 
@@ -58,7 +58,7 @@ The frontend is mostly static with some handwritten javascript, mainly for the S
 Anything needed for more than one endpoint/route should be handled in an appropriately named file in `./` for now. Subfolders might be added later. When repeated operations on a DB model become apparent, an appriopriate method might be added to the model, directly inside `./db.js` for now but maybe in extra files later.
 
 ### Services and customization
-_SendGrid_ is used for emails (forgot password etc) but can be replaced with other services or self-hosted options via changes to `./email.js`.
+_MailJet_ is used for emails (forgot password etc) but can be replaced with other services or self-hosted options via changes to `./email.js`.
 
 The only locale is German. Changing that would currently require changing a ton of hardcoded strings, an i18n lib might be implemented later though.
 
