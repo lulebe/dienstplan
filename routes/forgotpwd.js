@@ -6,7 +6,6 @@ const config = require.main.require('./config')
 const { User } = require.main.require('./db')
 
 module.exports = async (req, res) => {
-  console.log(req.body.email)
   if (!req.body.email)
     return res.redirect('/?status=0')
   const foundUser = await User.findOne({where: {email: req.body.email}})
@@ -15,7 +14,6 @@ module.exports = async (req, res) => {
   const pw = generator.generate({length: 10, numbers: true})
   foundUser.password = await bcrypt.hash(pw, await bcrypt.genSalt(config.SALT_ROUNDS))
   await foundUser.save()
-  console.log(foundUser.email, pw)
   await sendEmail(foundUser.email, foundUser.fullName, pw)
   res.redirect('/?status=1')
 }

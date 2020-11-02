@@ -8,4 +8,4 @@ module.exports = async (req, res) => {
   tmpl.render('app/edituser.twig', res.tmplOpts).then(rendered => res.end(rendered))
 }
 
-//TODO allow email change (send info email to old and new email)
+//TODO allow email change

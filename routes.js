@@ -33,6 +33,7 @@ appRouter.post('/newplan', [onlyAdmin], require('./routes/app/newplan_post'))
 appRouter.get('/plan/:planId', require('./routes/app/plan'))
 appRouter.post('/plan/:planId', [require('./routes/app/plan_post')], require('./routes/app/plan'))
 
+appRouter.get('/plan/:planId/delete', [onlyAdmin], require('./routes/app/plan_delete'))
 appRouter.get('/plan/:planId/scheduling', [onlyAdmin], require('./routes/app/scheduling'))
 appRouter.post('/plan/:planId/scheduling', [onlyAdmin, require('./routes/app/scheduling_post')], require('./routes/app/scheduling'))
 
