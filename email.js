@@ -1,8 +1,8 @@
-const mailjet = require ('node-mailjet')
+const nodemj = require ('node-mailjet')
 
 const config = require('./config')
 
-mailjet.connect(config.MJ_APIKEY_PUBLIC, config.MJ_APIKEY_PRIVATE)
+const mailjet = nodemj.connect(config.MJ_APIKEY_PUBLIC, config.MJ_APIKEY_PRIVATE)
 
 module.exports = function (email, subject, name, text, html) {
   /* return sgMail.send({
