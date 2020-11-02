@@ -18,7 +18,7 @@ async function saveNote (req, res) {
   })
   note.maxNights = req.body.maxNights
   note.maxDays = req.body.maxDays
-  note.Notes = req.body.note
+  note.Notes = req.body.note || ""
   await note.save()
 }
 
