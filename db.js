@@ -23,7 +23,7 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
     set (val) {
-      this.setDataValue(val.toLowerCase())
+      this.setDataValue('email', val.toLowerCase())
     }
   },
   phone: {
