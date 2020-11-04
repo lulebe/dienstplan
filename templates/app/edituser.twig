@@ -9,6 +9,34 @@
   <h3>{{u.firstName}} {{u.lastName}}</h3>
 
   Administrator: {{ u.isAdmin ? 'Ja' : 'Nein' }}<br><br>
+
+  <section class="card">
+    <h3>E-Mail ändern</h3>
+    bisherige Adresse: {{u.email}}<br>
+    <form method="post">
+      <input type="email" name="newmail" placeholder="neue E-Mail-Adresse">
+      <input type="submit" name="mailChange" value="E-Mail ändern">
+    </form>
+  </section>
+  <br><br>
+  <section class="card">
+    <h3>Handynummer ändern</h3>
+    bisherige Nummer: {{u.phone}}<br>
+    <form method="post">
+      <input type="tel" name="phone" placeholder="neue Handynummer">
+      <input type="submit" name="phoneChange" value="Nummer ändern">
+    </form>
+  </section>
+  <br><br>
+  <section class="card">
+    <h3>Daten ändern</h3>
+    <form method="post">
+      <input type="text" name="firstName" placeholder="Vorname" value="{{u.firstName}}">
+      <input type="text" name="lastName" placeholder="Nachname" value="{{u.lastName}}">
+      <input type="submit" name="nameChange" value="speichern">
+    </form>
+  </section>
+  <br><br>
   
   {% if u.isAdmin %}
     <form action="" method="post" onsubmit="return confirm('{{u.firstName}} {{u.lastName}} die Adminrechte entziehen?');">

@@ -44,9 +44,12 @@
   <br><br>
   <section class="card">
     <h3>Daten ändern</h3>
+    <br>
     <form method="post">
-      <input type="text" name="firstName" placeholder="Vorname">
-      <input type="text" name="lastName" placeholder="Nachname">
+      <label for="inp-first-name">Vorname</label>
+      <input type="text" name="firstName" placeholder="Vorname" id="inp-first-name" value="{{user.firstName}}">
+      <label for="inp-last-name">Nachname</label>
+      <input type="text" name="lastName" placeholder="Nachname" id="inp-last-name" value="{{user.larstName}}">
       <input type="submit" name="nameChange" value="speichern">
     </form>
   </section>
