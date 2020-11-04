@@ -6,6 +6,14 @@
 <div class="wrapper">
   <h2>Admin-Panel</h2>
 
+  {% if successMsg is defined %}
+  <div class="msgcard success">{{successMsg}}</div>
+  {% endif %}
+
+  {% if errorMsg is defined %}
+  <div class="msgcard error">{{errorMsg}}</div>
+  {% endif %}
+
   <h3>{{u.firstName}} {{u.lastName}}</h3>
 
   Administrator: {{ u.isAdmin ? 'Ja' : 'Nein' }}<br><br>
