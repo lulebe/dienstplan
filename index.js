@@ -20,6 +20,7 @@ app.use(require('body-parser').urlencoded({extended: true}))
 app.use('/', require('./routes'))
 app.use('/assets', require('express').static('./assets'))
 
+
 app.listen(config.PORT, () => {
   console.log("Dienstplan Server started on port", config.PORT)
 })

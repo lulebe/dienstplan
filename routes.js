@@ -40,8 +40,10 @@ appRouter.post('/plan/:planId/scheduling', [onlyAdmin, require('./routes/app/sch
 appRouter.get('/plan/:planId/export', require('./routes/app/export'))
 
 async function userHandler (req, res, next) {
-  if (!req.session.userId)
-    return res.redirect('/')
+  if (!req.session.userId) {
+    const goto = req.originalUrl != '/app/logout' ? '?goto=' + req.originalUrl : ''
+    return res.redirect('/' + goto)
+  }
   res.tmplOpts.isLoggedIn = true
   req.user = await User.findByPk(req.session.userId)
   res.tmplOpts.user = req.user.dataValues

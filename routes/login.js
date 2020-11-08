@@ -15,5 +15,8 @@ module.exports = async (req, res) => {
   req.session.isAdmin = foundUser.isAdmin
   req.session.firstName = foundUser.firstName
   req.session.lastName = foundUser.lastName
-  res.redirect('/app/main')
+  if (req.query.goto)
+    res.redirect(req.query.goto)
+  else
+    res.redirect('/app/main')
 }

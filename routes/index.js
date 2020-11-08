@@ -3,7 +3,14 @@ const tmpl = require.main.require('./templates')
 module.exports = (req, res) => {
   if (req.session.userId)
     return res.redirect('/app/main')
-  tmpl.render('index.twig', {isLoggedIn: false, isAdmin: false, hasError: !!req.query.status, errorMsg: makeMsg(req.query.status)}).then(rendered => res.end(rendered))
+  const opts = {
+    isLoggedIn: false,
+    isAdmin: false,
+    hasError: !!req.query.status,
+    errorMsg: makeMsg(req.query.status),
+    loginGoto: req.query.goto ? '?goto=' + req.query.goto : ''
+  }
+  tmpl.render('index.twig', opts).then(rendered => res.end(rendered))
 }
 
 function makeMsg (code) {
