@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dienstplan stud. Hilfskräfte {{name}}</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    tr, td, th {
+      margin: 0;
+      border: none;
+    }
+    td, th {
+      padding: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Dienstplan stud. Hilfskräfte {{name}}</h3>
+  <table id="user-table">
+    <thead>
+      <tr><th>Name</th><th>Telefon</th><th>E-Mail</th></tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+        <tr><td>{{this.name}}</td><td>{{this.phone}}</td><td>{{this.email}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <br><br><br>
+  <table id="shift-table">
+    <thead>
+      <tr><th>Schicht</th><th>Mitarbeiter</th></tr>
+    </thead>
+    <tbody>
+      {{#each shifts}}
+        <tr><td>{{this.dt}}</td><td>{{this.name}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+</body>
+</html>

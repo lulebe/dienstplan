@@ -4,6 +4,9 @@ const app = require('express')()
 const config = require('./config')
 const sessionStore = require('./db').sessionStore
 
+var path = require('path')
+global.appRoot = path.resolve(__dirname)
+
 app.use(
   session({
     secret: config.COOKIE_SECRET,
