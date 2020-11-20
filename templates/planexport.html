@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: sans-serif;
-      font-size: 10pt;
+      font-size: 10px;
     }
     tr, td, th {
       margin: 0;
@@ -15,6 +15,9 @@
     }
     td, th {
       padding: 4px;
+    }
+    td.high-priority {
+      font-weight: bold;
     }
   </style>
 </head>
@@ -37,7 +40,7 @@
     </thead>
     <tbody>
       {{#each shifts}}
-        <tr><td>{{this.dt}}</td><td>{{this.name}}</td></tr>
+        <tr><td {{#if this.highPriority}}class="high-priority"{{/if}}>{{this.dt}}</td><td>{{this.name}}</td></tr>
       {{/each}}
     </tbody>
   </table>

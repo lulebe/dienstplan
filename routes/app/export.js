@@ -19,7 +19,8 @@ module.exports = async (req, res) => {
         dt: dates.displayShiftDate(shift.start) + " " + dates.displayShiftTime(shift.start) + "-" + dates.displayShiftTime(shift.end),
         name: shift.pickedUser.fullName,
         phone: shift.pickedUser.phone,
-        email: shift.pickedUser.email
+        email: shift.pickedUser.email,
+        highPriority: shift.priority > 1
       })
     }
   })
