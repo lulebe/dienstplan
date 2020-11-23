@@ -55,7 +55,6 @@ async function pwChange (req, res) {
 function sendMailchangeMails (oldMail, newMail, name) {
   const text = 'deine hinterlegte Mailadresse wurde von ' + oldMail + ' zu ' + newMail + ' geändert.'
   return Promise.all([
-    mailer(oldMail, 'Dienstplan E-Mail geändert', name, text, text),
-    mailer(newMail, 'Dienstplan E-Mail geändert', name, text, text)
+    mailer([{email: oldMail, name}, {email: newMail, name}], 'Dienstplan E-Mail geändert', text, text)
   ])
 }

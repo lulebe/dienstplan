@@ -20,10 +20,9 @@ module.exports = async (req, res) => {
 
 function sendEmail (email, name, pw) {
   return mailer(
-    email,
+    [{email, name}],
     'Passwort zurückgesetzt',
-    name,
-    'Dein neues Dienstplan-Passwort lautet:<br>' + pw,
-    'Dein neues Dienstplan-Passwort lautet:<br><pre>' + pw + '</pre>'
-    )
+    'Dein neues Dienstplan-Passwort lautet:\n\n' + pw + '\n\n Du solltest es unter "Profil" ändern.',
+    'Dein neues Dienstplan-Passwort lautet:<br><pre>' + pw + '</pre><br><br>Du solltest es unter "Profil" ändern.'
+  )
 }

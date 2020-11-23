@@ -1,4 +1,5 @@
-const { Plan, Shift } = require.main.require('./db')
+const mailer = require.main.require('./email')
+const { Plan, Shift, User } = require.main.require('./db')
 const generateShiftList = require.main.require('./generateShiftList')
 
 module.exports = async (req, res) => {
@@ -15,4 +16,16 @@ module.exports = async (req, res) => {
   })
   await Shift.bulkCreate(shiftList)
   res.redirect('/app/main')
+  sendInfoEmails(plan)
+}
+
+
+function sendInfoEmails (plan) {
+  const users = await User.findAll()
+  mailer(
+    users.map(u => ({email: u.email, name: u.firstName})),
+    'Neuer Plan verfügbar',
+    'Schichtwünsche im neuen Plan "' + plan.name + '" können jetzt eingetragen werden.',
+    'Schichtwünsche im neuen Plan "' + plan.name + '" können jetzt eingetragen werden.'
+  )
 }

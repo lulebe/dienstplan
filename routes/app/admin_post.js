@@ -28,10 +28,9 @@ module.exports = async (req, res, next) => {
 
 function sendPwMail (email, name, pw) {
   return mailer(
-    email,
+    [{email, name}],
     'Account erstellt',
-    name,
-    'dein Account auf dienstplan.lulebe.net wurde mit folgendem Passwort angelegt:\n\n' + pw,
-    'dein Account auf <a href="dienstplan.lulebe.net">dienstplan.lulebe.net</a> wurde mit folgendem Passwort angelegt:<br><br><pre>' + pw + '</pre>'
+    'dein Account auf dienstplan.lulebe.net wurde mit folgendem Passwort angelegt:\n\n' + pw + '\n\nDu solltest es unter "Profil" ändern.',
+    'dein Account auf <a href="dienstplan.lulebe.net">dienstplan.lulebe.net</a> wurde mit folgendem Passwort angelegt:<br><br><pre>' + pw + '</pre><br><br>Du solltest es unter "Profil" ändern.'
   )
 }
