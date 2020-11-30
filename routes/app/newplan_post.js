@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
 }
 
 
-function sendInfoEmails (plan) {
+async function sendInfoEmails (plan) {
   const users = await User.findAll()
   mailer(
     users.map(u => ({email: u.email, name: u.firstName})),
