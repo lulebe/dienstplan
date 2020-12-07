@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
   .then(pdfres => {
     res.status(200)
     res.setHeader('content-type', 'application/pdf')
-    res.setHeader('Content-Disposition', 'attachment; filename="dienstplan_' + plan.name.replace(' ', '_').toLowerCase() + '.pdf"')
+    res.setHeader('Content-Disposition', 'attachment; filename="dienstplan_stud_' + plan.name.replace(' ', '_').toLowerCase() + '.pdf"')
     res.sendFile(joinPath(global.appRoot, 'planexport', req.params.planId + '.pdf'))
   })
   .catch(e => {
