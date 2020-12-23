@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
   XLSX.utils.book_append_sheet(wb, sheet, plan.name)
   const buf = XLSX.write(wb, {type:'buffer', bookType: "xlsx"})
   res.status(200)
-  res.setHeader('Content-Disposition', 'attachment; filename="dienstplan_stud_' + plan.name.replace(' ', '_').toLowerCase() + 'xlsx"')
+  res.setHeader('Content-Disposition', 'attachment; filename="dienstplan_stud_' + plan.name.replace(' ', '_').toLowerCase() + '.xlsx"')
   res.setHeader('content-type', "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
   res.send(buf)
 }
