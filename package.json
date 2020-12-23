@@ -31,7 +31,8 @@
     "node-mailjet": "^3.3.1",
     "pdf-creator-node": "^1.4.1",
     "sequelize": "^6.3.5",
-    "twing": "^5.0.2"
+    "twing": "^5.0.2",
+    "xlsx": "^0.16.9"
   },
   "devDependencies": {
     "brunch": "^3.0.0",
