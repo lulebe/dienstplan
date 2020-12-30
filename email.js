@@ -14,8 +14,8 @@ module.exports = function (users, subject, text, html) {
             },
             "To": to,
             "Subject": subject,
-            "TextPart": 'Hallo' + (users.length === 1 ? (' ' + user[0].name) : '') + ',\n\n' + text + '\n\nViele Grüße,\ndas Dienstplan-Team',
-            "HTMLPart": 'Hallo' + (users.length === 1 ? (' ' + user[0].name) : '') + ',<br><br>' + html + '<br><br>Viele Grüße,<br>das Dienstplan-Team'
+            "TextPart": 'Hallo' + (users.length === 1 ? (' ' + users[0].name) : '') + ',\n\n' + text + '\n\nViele Grüße,\ndas Dienstplan-Team',
+            "HTMLPart": 'Hallo' + (users.length === 1 ? (' ' + users[0].name) : '') + ',<br><br>' + html + '<br><br>Viele Grüße,<br>das Dienstplan-Team'
         }]
     })
 }
