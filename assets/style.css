@@ -263,13 +263,13 @@ nav#mobile-nav {
   color: white;
   font-size: 3rem;
   text-align: center;
-  line-height: 300px;
+  line-height: 200px;
 }
 
 @media (max-width: 440px) {
   #splash {
     font-size: 2rem;
-    line-height: 150px;
+    line-height: 80px;
   }
 }
 .login-area {
