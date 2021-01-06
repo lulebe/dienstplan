@@ -8,7 +8,8 @@ module.exports = (req, res) => {
     isAdmin: false,
     hasError: !!req.query.status,
     errorMsg: makeMsg(req.query.status),
-    loginGoto: req.query.goto ? '?goto=' + req.query.goto : ''
+    loginGoto: req.query.goto ? '?goto=' + req.query.goto : '',
+    currentYear: new Date().getFullYear()
   }
   tmpl.render('index.twig', opts).then(rendered => res.end(rendered))
 }
