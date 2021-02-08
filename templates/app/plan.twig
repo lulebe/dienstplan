@@ -16,10 +16,10 @@
         2 Klicks = gelb = "Falls nötig".
       </li>
       <li>
-        "Auswahl speichern"
+        In der Notiz (ganz unten) mögliche Wünsche und maximale Anzahl Nächte und Tage eintragen.
       </li>
       <li>
-        In der Notiz (ganz unten) mögliche Wünsche und maximale Anzahl Nächte und Tage eintragen und Notiz speichern.
+        "Eingaben speichern" am Ende der Seite.
       </li>
     </ol>
   </p>
@@ -58,7 +58,7 @@
     <input type="hidden" name="note" id="inp-send-note">
     <input type="hidden" name="shiftOptions" value="" id="inp-shift-opts">
   </form>
-  <br><br>
+  <br>
   <h3>Notizen</h3>
   {% for note in plan.PlanNotes %}
     <section class="card">
@@ -83,6 +83,7 @@
       <textarea name="note" id="inp-note" placeholder='z.B. "Am besten Dienste anfangs des Monats."'>{{plan.myNote ? plan.myNote.Notes : ''}}</textarea><br>
     </form>
   </section>
+  <br>
   <button onclick="sendOptions()">Eingaben speichern</button>
 </div>
 {% endblock %}
