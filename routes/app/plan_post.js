@@ -4,7 +4,7 @@ const { Plan, PlanNote, ShiftOption, Shift } = require.main.require('./db')
 
 module.exports = async (req, res, next) => {
   req.plan = await Plan.findByPk(req.params.planId)
-  if (req.body.saveNote) await saveNote(req, res)
+  if (req.body.note) await saveNote(req, res)
   if (req.body.shiftOptions) await saveOptions(req, res)
   next()
 }

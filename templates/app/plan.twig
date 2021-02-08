@@ -52,8 +52,10 @@
       </li>
     {% endfor %}
   </ul>
-  <button onclick="sendOptions()">Auswahl speichern</button>
   <form style="display: none" method="post" id="form-shift-opts">
+    <input type="hidden" name="maxNights" id="inp-send-max-nights">
+    <input type="hidden" name="maxDays" id="inp-send-max-days">
+    <input type="hidden" name="note" id="inp-send-note">
     <input type="hidden" name="shiftOptions" value="" id="inp-shift-opts">
   </form>
   <br><br>
@@ -79,9 +81,9 @@
       <br>
       <label for="inp-note">Textnotiz</label>
       <textarea name="note" id="inp-note" placeholder='z.B. "Am besten Dienste anfangs des Monats."'>{{plan.myNote ? plan.myNote.Notes : ''}}</textarea><br>
-      <input type="submit" name="saveNote" value="Notiz speichern">
     </form>
   </section>
+  <button onclick="sendOptions()">Eingaben speichern</button>
 </div>
 {% endblock %}
 
@@ -105,6 +107,9 @@ function sendOptions() {
     shiftOptions.push({id: parseInt(el.dataset.shiftId), status: parseInt(el.dataset.shiftStatus)})
   }
   document.getElementById('inp-shift-opts').value = JSON.stringify(shiftOptions)
+  document.getElementById('inp-send-max-nights').value = document.getElementById('inp-max-nights').value
+  document.getElementById('inp-send-max-days').value = document.getElementById('inp-max-days').value
+  document.getElementById('inp-send-note').value = document.getElementById('inp-note').value
   document.getElementById('form-shift-opts').submit()
 }
 </script>
