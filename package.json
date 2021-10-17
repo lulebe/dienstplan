@@ -32,6 +32,7 @@
     "pdf-creator-node": "^1.4.1",
     "sequelize": "^6.3.5",
     "twing": "^5.0.2",
+    "xlsx": "^0.16.9",
     "js-xlsx": "^0.8.22"
   },
   "devDependencies": {
