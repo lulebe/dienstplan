@@ -1,7 +1,7 @@
 const tmpl = require.main.require('./templates')
 const { Plan, Shift, PlanNote, User, ShiftOption } = require.main.require('./db')
 const dates = require.main.require('./dates')
-const XLSX = require('js-xlsx')
+const XLSX = require('xlsx')
 
 module.exports = async (req, res) => {
   const plan = await Plan.findByPk(req.params.planId, {include: [{model: Shift, include: ['pickedUser', {model: ShiftOption, include: User}]}, {model: PlanNote, include: User}]})
