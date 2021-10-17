@@ -25,10 +25,10 @@ module.exports = async (req, res) => {
   const wb = XLSX.utils.book_new()
   const sheet = XLSX.utils.aoa_to_sheet(rows)
   sheet['!cols'] = [{wch: 52}, {wch: 25}, {wch: 20}, {wch: 25}]
-  rowsToColor.forEach(rowNum => {
-    ['A', 'B', 'C', 'D'].forEach(column => {
-      sheet[column+rowNum].s.fill.bgColor = { rgb: "FFFFF01F" }
-    })
+//  rowsToColor.forEach(rowNum => {
+//    ['A', 'B', 'C', 'D'].forEach(column => {
+//      sheet[column+rowNum].s.fill.bgColor = { rgb: "FFFFF01F" }
+//    })
   })
   XLSX.utils.book_append_sheet(wb, sheet, plan.name)
   const buf = XLSX.write(wb, {type:'buffer', bookType: "xlsx"})
