@@ -3,6 +3,7 @@ const dh = require('date-holidays')
 const holidays = new dh('DE', 'HE')
 
 module.exports = function (startdate, enddate) {
+  enddate.setHours(startdate.getHours()) // daylight saving time hack
   const shiftList = []
   const currentDate = new Date(startdate)
   while (currentDate <= enddate) {
